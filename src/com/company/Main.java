@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+        iniciarPrograma();
     }
 
     public static int billetes1000 = 10;
@@ -29,15 +30,16 @@ public class Main {
 
         switch (opcion) {
             case "1": {
-//                accionUsuario(1);
+                System.out.println("¿Cuánto quieres retirar? ");
+                retirarEfectivo(Integer.parseInt(escanea.nextLine()));
                 break;
             }
             case "2": {
-//                accionUsuario(1,1);
+                imprimirSaldo();
                 break;
             }
             case "3": {
-//                accionUsuario(1,1,1);
+                imprimirEfectivo();
                 break;
             }
             case "4": {
@@ -52,28 +54,40 @@ public class Main {
     }
 
     public static void retirarEfectivo (int cantidad) {
-        switch (cantidad) {
-            case (cantidad >= 1000): {
+        int total = ((billetes1000 * 1000) + (billetes500 * 500) + (billetes200 * 200) + (billetes100 * 100) + (billetes50 * 50));
+        int resto = total - cantidad;
+        int stateMachine = resto;
 
-            }
-        }
-//        int stateMachine = 0;
-//        if (billetes1000 > 0) {
-//            if ((cantidad - (cantidad%1000))/1000 > 10) {
-//                stateMachine = (cantidad - (cantidad%1000))/1000 - 10;
-//                billetes1000 -= 10;
-//            } else {
-//                billetes1000 -= (cantidad - (cantidad%1000))/1000;
-//            }
-//        }
-//        if (billetes500 > 0) {
-//            billetes500 -= (stateMachine*2);
-//            if ((cantidad - (cantidad%500))/500 > 10)
-//        }
+        billetes1000 = billetes1000 - (stateMachine - stateMachine%1000)/1000;
+        stateMachine = (0 - billetes1000) * 1000;
+        if (billetes1000 < 0) billetes1000 = (0 - billetes1000) ;
+        System.out.println("Este es el state Machine " + stateMachine);
+
+        billetes500 = billetes500 - (stateMachine - stateMachine%500)/500;
+        stateMachine = (-1 * billetes500) * 500;
+        if (billetes500 < 0) billetes500 = (0 - billetes500);
+        System.out.println("Este es el state Machine 2 " + stateMachine);
+
+        billetes200 = billetes200 - (stateMachine - stateMachine%200)/200;
+        stateMachine = (-1 * billetes200) * 200;
+        if (billetes200 < 0) billetes200 = (0 - billetes200);
+        System.out.println("Este es el state Machine 3 " + stateMachine);
+
+        billetes100 = billetes100 - (stateMachine - stateMachine%100)/100;
+        stateMachine = (-1 * billetes100) * 100;
+        if (billetes100 < 0) billetes100 = (0 - billetes100);
+        System.out.println("Este es el state Machine 4 " + stateMachine);
+
+        billetes50 = billetes50 - (stateMachine - stateMachine%50)/50;
+        stateMachine = (-1 * billetes50) * 50;
+        if (billetes50 < 0) billetes50 = (0 - billetes50);
+        System.out.println("Este es el state Machine 5 " + stateMachine);
+
+        imprimirEfectivo();
     }
 
     public static void imprimirSaldo () {
-        System.out.println("El saldo total es: " + (billetes1000 * 1000) + (billetes500 * 500) + (billetes200 * 200) + (billetes100 * 100) + (billetes50 * 50));
+        System.out.println("El saldo total es: " + ((billetes1000 * 1000) + (billetes500 * 500) + (billetes200 * 200) + (billetes100 * 100) + (billetes50 * 50)));
         System.out.println();
         iniciarPrograma();
     }
